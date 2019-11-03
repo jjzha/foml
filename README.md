@@ -17,6 +17,8 @@ Pick the Python 3.7 version, also check whether your system is 32-bit or 64-bit.
 
 ### 2. Install packages
 
+After installing miniconda:  
+
 (1) Go to your terminal (cmd for Windows)  
 (2) Type (or copy-paste)  
 
@@ -53,3 +55,8 @@ Pick the Python 3.7 version, also check whether your system is 32-bit or 64-bit.
 (2) To run an experiment, try:  
 
     python3 run_experiment.py --csv data/trainset-sentiment-extra.csv --algorithms nb --nwords 1
+
+### Questions?
+
+If you have any questions, please ask during the lab or contact me via e-mail:
+    j.j.zhang@rug.nl
