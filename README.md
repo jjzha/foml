@@ -1,14 +1,10 @@
-__author__ = Mike Zhang
-
-__version__ = 1.0
-
-__license__ = "GPL v3"
-
-__maintainer__ = "Mike Zhang"
-
-__email__ = "j.j.zhang@rug.nl"
-
+__author__ = Mike Zhang  
+__version__ = 1.0  
+__license__ = "GPL v3"  
+__maintainer__ = "Mike Zhang"  
+__email__ = "j.j.zhang@rug.nl"  
 __status__ = "early alpha"
+
 
 # Fundamentals of Machine Learning: Theory and Practice
 
@@ -17,21 +13,29 @@ Code for FoML students.
 ## Instructions on running Python scripts
 ### 1. Install Miniconda
 
-https://docs.conda.io/en/latest/miniconda.html
+https://docs.conda.io/en/latest/miniconda.html  
 Pick the Python 3.7 version, also check whether your system is 32-bit or 64-bit.
 
 ### 2. Install packages
 
     conda install matplotlib numpy pandas scikit-learn
 
-If some packages are missing:
+If some packages are missing:  
 
     conda install <package_name>
 
-### 3. Download code from Github
+### 3. Download code from github
 
+Option 1 (static):  
+    https://github.com/jjzha/foml/archive/master.zip  
 
-### Running an experiment
+Option 2 (dynamic, if you know how to use github):
+    1. git clone https://github.com/jjzha/foml.git
+    2. to get most recent version:
+        git pull
+
+### 4. Running an experiment
+
 To run an experiment, try:
 
-    python run_experiment.py --csv data/trainset-sentiment-extra.csv --algorithms nb --nwords 1
+    python3 run_experiment.py --csv data/trainset-sentiment-extra.csv --algorithms nb --nwords 1
