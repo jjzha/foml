@@ -2,7 +2,6 @@ __author__ = Mike Zhang
 __version__ = 1.0  
 __license__ = GPL v3  
 __maintainer__ = Mike Zhang  
-__email__ = j.j.zhang@rug.nl  
 __status__ = early alpha  
 
 
@@ -13,7 +12,7 @@ Code for FoML students.
 ## Instructions on running Python scripts
 ### 1. Install Miniconda
 
-https://docs.conda.io/en/latest/miniconda.html   
+    https://docs.conda.io/en/latest/miniconda.html    
 Pick the Python 3.7 version, also check whether your system is 32-bit or 64-bit.  
 
 ### 2. Install packages
@@ -41,7 +40,7 @@ Pick the Python 3.7 version, also check whether your system is 32-bit or 64-bit.
 
     git clone https://github.com/jjzha/foml.git  
 
-(2) to get most recent version:  
+(2) To get most recent version:  
 
     git pull
 
