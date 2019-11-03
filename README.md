@@ -13,23 +13,23 @@ Code for FoML students.
 ## Instructions on running Python scripts
 ### 1. Install Miniconda
 
-https://docs.conda.io/en/latest/miniconda.html  
-Pick the Python 3.7 version, also check whether your system is 32-bit or 64-bit.
+https://docs.conda.io/en/latest/miniconda.html   
+Pick the Python 3.7 version, also check whether your system is 32-bit or 64-bit.  
 
 ### 2. Install packages
 
-1. Go to your terminal (cmd for Windows)
-2. Type (or copy-paste)
+1. Go to your terminal (cmd for Windows)  
+2. Type (or copy-paste)  
 
     conda activate  
 
-3. Type (or copy-paste)
+3. Type (or copy-paste)  
 
-    conda install matplotlib numpy pandas scikit-learn
+    conda install matplotlib numpy pandas scikit-learn  
 
 If some packages are missing:  
 
-    conda install <package_name>
+    conda install <package_name>  
 
 ### 3. Download code from github
 
