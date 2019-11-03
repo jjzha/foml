@@ -1,13 +1,12 @@
+# Fundamentals of Machine Learning: Theory and Practice
+
+Code for FoML students.
+
 __author__ = Mike Zhang  
 __version__ = 1.0  
 __license__ = GPL v3  
 __maintainer__ = Mike Zhang  
 __status__ = early alpha  
-
-
-# Fundamentals of Machine Learning: Theory and Practice
-
-Code for FoML students.
 
 ## Instructions on running Python scripts
 ### 1. Install Miniconda
