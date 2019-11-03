@@ -27,16 +27,16 @@ Pick the Python 3.7 version, also check whether your system is 32-bit or 64-bit.
 
     conda install matplotlib numpy pandas scikit-learn  
 
-If some packages are missing:  
+#### If some packages are missing:  
 
     conda install <package_name>
 
 ### 3. Download code from github
 
-Option 1 (static (.zip file)):  
+#### Option 1 (static (.zip file)):  
     https://github.com/jjzha/foml/archive/master.zip  
 
-Option 2 (dynamic, if you know how to use github):  
+#### Option 2 (dynamic, if you know how to use github):  
 (1) Do only once:  
 
     git clone https://github.com/jjzha/foml.git  
