@@ -37,21 +37,18 @@ Option 1 (static (.zip file)):
     https://github.com/jjzha/foml/archive/master.zip  
 
 Option 2 (dynamic, if you know how to use github):  
-1.  
-
+(1):  
     git clone https://github.com/jjzha/foml.git  
-2. to get most recent version:  
+(2) to get most recent version:  
 
     git pull
 
 ### 4. Running an experiment
 
-1. Go to your foml map (by using 'cd' command). For example:  
-
+(1) Go to your foml map (by using 'cd' command). For example:  
 
     cd ~/Downloads/foml
 
-2. To run an experiment, try:  
-
+(2) To run an experiment, try:  
 
     python3 run_experiment.py --csv data/trainset-sentiment-extra.csv --algorithms nb --nwords 1
