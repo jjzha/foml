@@ -54,7 +54,7 @@ Having a conda *environment* on your pc is very convenient. You are able to run 
 
 ### 4. Running an experiment
 
-(1) go to your foml map (by using 'cd' command). For example:  
+(1) go to your foml map (by using **cd** command). For example:  
 
     cd ~/Downloads/foml
    
