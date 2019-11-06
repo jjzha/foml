@@ -52,6 +52,8 @@ Having a conda *environment* on your pc is very convenient. You are able to run 
 
     git pull
 
+The difference between static and dynamic is that every time we update some code, you have to download the new code manually. By using **git pull** you are able to *pull* the code from the link.
+
 ### 4. Running an experiment
 
 (1) go to your foml map (by using **cd** command). For example:  
