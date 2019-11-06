@@ -29,7 +29,9 @@ After installing miniconda:
 
 #### If some packages are missing:  
 
-    conda install <package_name>
+    conda install <package_name>  
+
+replace <package_name> with preferred package.
 
 ### 3. Download code from github
 
