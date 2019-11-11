@@ -2,7 +2,7 @@
 
 Code for FoML students.
 
-__author__ = Mike Zhang  
+__author__ = Malvina Nissim & Mike Zhang  
 __version__ = 1.0  
 __license__ = GPL v3  
 __maintainer__ = Mike Zhang  
@@ -66,7 +66,31 @@ It might be that your **foml** directory is not in the **Downloads** folder. To 
 
     python3 run_experiment.py --csv data/trainset-sentiment-extra.csv --algorithms nb --nwords 1
 
-### Questions?
+
+# Additional References
+
+With a focus on NLP:  
+
+- Christopher D. Manning and Hinrich Schütze, Foundations of Statistical Natural Language Processing, MIT Press. Cambridge, MA. 1999. http://nlp.stanford.edu/fsnlp/
+- Christopher D. Manning, Prabhakar Raghavan and Hinrich Schütze, Introduction to Information Retrieval, Cambridge University Press. 2008. http://nlp.stanford.edu/IR-book/
+- James Pustejovsky and Amber Stubbs, Natural Language Annotation for Machine Learning, O’Reilly. 2012.
+- Steven Bird, Ewan Klein, and Edward Loper, Natural Language Processing with Python, O’Reilly. 2009. http://www.nltk.org
+- Hal Daumé III. A course in Machine Learning. http://ciml.info (incomplete manuscript available online – some parts available for free.)
+
+More generally on machine learning:  
+
+- Tom Mitchell, Machine Learning, McGraw Hill. 1997.
+- Ian H. Witten, Eibe Frank, Mark A. Hall, Data Mining: Practical Machine Learning Tools and Techniques, The Morgan Kaufmann Series in Data Management Systems. 2011.
+- Yaser S. Abu-Mostafa, Malik Magdon-Ismail, Hsuan-Tien Lin, Learning from Data, AMLBook. 2012.
+- Peter Flach, Machine Learning: The Art and Science of Algorithms that Make Sense of Data, Cambridge University Press. 2012.
+
+More specific to Scikit learn (and ML with Python):  
+
+- Luis Pedro Coehlo and Willi Richert, Building Machine Learning Systems with Python, PACKT Publishing. 2013.
+- Raúl Garreta and Guillermo Moncecchi, Learning scikit-learn: Machine Learning in Python, PACKT Publishing. 2013.
+
+
+# Questions?
 
 If you have any questions, please ask during the lab or contact me via e-mail:
     j.j.zhang@rug.nl
