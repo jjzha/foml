@@ -21,7 +21,7 @@ Please note: pick the **Python 3.7 version**, also check whether your system is 
 
 After installing miniconda, we are going to install some packages:  
 
-(1) go to your terminal (cmd for Windows)  
+(1) go to your terminal (*Anaconda prompt (miniconda3)* for Windows. Windows users go to (3))  
 (2) type (or copy-paste)  
 
     conda activate  
@@ -29,6 +29,8 @@ After installing miniconda, we are going to install some packages:
 (3) type (or copy-paste)  
 
     conda install matplotlib numpy pandas scikit-learn  
+    
+If you see the **Proceed ([y]/n)?** prompt: press 'y' to continue
 
 #### If some packages are missing:  
 
