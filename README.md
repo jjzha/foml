@@ -66,7 +66,7 @@ The difference between static and dynamic is that every time we update some code
 
     cd ~/Downloads/foml
    
-It might be that your **foml** directory is not in the **Downloads** folder. To check where you are currently, type in the terminal/command prompt: **pwd** (for Linux/MacOS users) or **echo %cd%** (for Windows users). Then try to navigate to your folder where the **foml** directory is with **cd** (for Linux/MacOS/Windows).
+It might be that your **foml-master** directory is not in the **Downloads** folder. To check where you are currently, type in the terminal/command prompt: **pwd** (for Linux/MacOS users) or **echo %cd%** (for Windows users). Then try to navigate to your folder where the **foml** directory is with **cd** (for Linux/MacOS/Windows).
 
 (2) to run an experiment, try:  
 
