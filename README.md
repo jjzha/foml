@@ -36,6 +36,10 @@ After installing miniconda, we are going to install some packages:
 
 Please, replace **<package_name>** with your preferred package!  
 
+#### Update conda regularly
+
+    conda update conda
+
 Having a conda *environment* on your pc is very convenient. You are able to run your scripts in this environment without having python locally.
 
 ### 3. Download code from github
