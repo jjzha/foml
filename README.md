@@ -70,7 +70,7 @@ It might be that your **foml-master** directory is not in the **Downloads** fold
 
 (2) to run an experiment, try:  
 
-    python3 run_experiment.py --csv data/trainset-sentiment-extra.csv --algorithms nb --nwords 1
+    python run_experiment.py --csv data/trainset-sentiment-extra.csv --algorithms nb --nwords 1
 
 
 # Additional References
