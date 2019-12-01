@@ -22,7 +22,7 @@ import numpy as np
 def read_features_from_csv(args):
     X = []
     y = []
-    with open(args.csv, 'r') as csvfile:
+    with open(args.csv, 'r', encoding='utf8') as csvfile:
         csv_reader = csv.reader(csvfile, delimiter=args.delimiter)
         header = next(csv_reader)
         label_index = header.index('label')
