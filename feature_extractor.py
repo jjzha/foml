@@ -27,14 +27,23 @@ def read_features_from_csv(args):
         header = next(csv_reader)
         label_index = header.index('label')
         try:
-            text_index = header.index('text-cat')
+            if args.features is not None:
+                for feature in args.features:
+                    if feature in header and 'text' in feature:
+                        text_index = header.index(feature)
+                    else:
+                        text_index = -1
+            else:
+                text_index = header.index('text-cat')
         except:
             print('No text-cat found')
             text_index = -1
 
         feature_indices = []
         for feature in args.features:
-            if feature in header:
+            if text_index >= 0:
+                pass
+            elif feature in header:
                 feature_indices.append(header.index(feature))
             else:
                 print('Feature {0} not found in header.'.format(feature))
@@ -117,7 +126,7 @@ def features_to_one_hot(X):
     for feature in features_to_use:
         new_feature_ids[feature]
 
-    n_cats   = len(new_feature_ids)
+    n_cats = len(new_feature_ids)
     print('n features: {0}'.format(n_cats))
     one_hot_X = np.zeros((len(X), n_cats), dtype=np.float32)
     # TODO: Fix for several cats
