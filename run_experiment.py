@@ -38,6 +38,7 @@ if __name__ == '__main__':
     parser.add_argument('--fname', help='filename to store features', type=str, default=None)
     parser.add_argument('--nwords', type=int)
     parser.add_argument('--nchars', type=int)
+    parser.add_argument('--split', help='Indicate what split the ML model has to use', type=str, nargs='+', default=None)
     parser.add_argument('--features', nargs='+', default=[])
     parser.add_argument('--dtype', help='datatype in file', type=str, default=None)  # TODO: Not implemented
     parser.add_argument('--delimiter', help='csv delimiter', type=str, default=',')  # TODO: Not implemented
@@ -60,12 +61,13 @@ if __name__ == '__main__':
     print('one hot encoding...')
     X, feature_ids = features_to_one_hot(X)
 
-    train_X, train_y, dev_X, dev_y, test_X, test_y = make_splits(X, y)
+    train_X, train_y, dev_X, dev_y, test_X, test_y = make_splits(X, y, args)
     if args.max_train_size:
         train_X = train_X[:args.max_train_size]
         train_y = train_y[:args.max_train_size]
 
     print('n train samples: {0}'.format(len(train_y)))
+    print('uses a {0}% train and {1}% test split'.format(args.split[0], args.split[1]))
     baseline(train_y, dev_y)
     classifiers = get_classifiers(args)
 

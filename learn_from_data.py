@@ -29,13 +29,15 @@ def read_features(fname):
         loaded = np.load(in_f)
         return loaded['X'], loaded['y']
 
-def make_splits(X, y):
+def make_splits(X, y, args):
     X = list(X) # TODO: Why does this have to be a list?
+    train = float(args.split[0])/100.0
+    test = float(args.split[1])/100.0
     combined = list(zip(X, y))
     random.shuffle(combined)
     X[:], y[:] = zip(*combined)
-    dev_split  = int(len(y) * 0.7)
-    test_split = dev_split + int(len(y) * 0.15)
+    dev_split  = int(len(y) * train)
+    test_split = dev_split + int(len(y) * test)
 
     train_X = X[:dev_split]
     train_y = y[:dev_split]
