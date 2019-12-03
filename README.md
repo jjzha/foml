@@ -72,9 +72,10 @@ It might be that your **foml-master** directory is not in the **Downloads** fold
 
 ~python run_experiment.py --csv data/trainset-sentiment-extra.csv --algorithms nb --nwords 1~
     
-per 01-12-2019: script now explicitly asks for the --features flag e.g.
+per 01-12-2019: script now explicitly asks for the --features flag when --nwords/--nchars is used e.g.
 
     python run_experiment.py --csv data/trainset-sentiment-extra.csv --algorithms nb --features text-cat --nwords 1
+
 
 
 # Additional References
