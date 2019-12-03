@@ -76,7 +76,9 @@ per 01-12-2019: script now explicitly asks for the --features flag when --nwords
 
     python run_experiment.py --csv data/trainset-sentiment-extra.csv --algorithms nb --features text-cat --nwords 1
 
-
+per 03-12-2019: now you have to explicitly state the split:
+    
+    python run_experiment.py --csv data/hyperp_subset.csv --algorithms nb --features text-cat --nwords 1 --split 70 30
 
 # Additional References
 
