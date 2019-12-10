@@ -102,6 +102,9 @@ More specific to Scikit learn (and ML with Python):
 - Luis Pedro Coehlo and Willi Richert, Building Machine Learning Systems with Python, PACKT Publishing. 2013.
 - Raúl Garreta and Guillermo Moncecchi, Learning scikit-learn: Machine Learning in Python, PACKT Publishing. 2013.
 
+More into background of neural nets:
+
+- https://deeplearning.mit.edu/
 
 # Questions?
 
