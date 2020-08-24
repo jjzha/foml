@@ -1,84 +1,88 @@
-# Fundamentals of Machine Learning: Theory and Practice
+# Machine Learning (SOMINDW07)
 
-Code for FoML students.
+Code for ML students.
 
 __author__ = Malvina Nissim & Mike Zhang  
 __version__ = 1.0  
 __license__ = GPL v3  
 __maintainer__ = Mike Zhang  
-__status__ = early alpha  
+__status__ = Testing
 
-## Instructions on running Python scripts
-### 1. Install Miniconda
+# Instructions on running Python scripts
+## 1. Install Miniconda
 
 First, we are going to install a package manager. This makes sure that all your packages are up-to-date:
 
     https://docs.conda.io/en/latest/miniconda.html    
     
-Please note: pick the **Python 3.7 version**, also check whether your system is **32-bit** or **64-bit**.  
+Please note: pick the `Python 3.8` version, also check whether your system is `32-bit` or `64-bit`.  
 
-### 2. Install packages
+## 2. Install packages
 
 After installing miniconda, we are going to install some packages:  
 
-(1) go to your terminal (**Anaconda prompt (miniconda3)** for Windows. Windows users go to (3))  
-(2) type (or copy-paste)  
+(1)  Go to your terminal (`Anaconda prompt (miniconda3)`) for Windows. Windows users go to `(3)`).  
+(2) Type (or copy-paste):
 
     conda activate  
 
-(3) type (or copy-paste)  
+(3) Type (or copy-paste):
 
     conda install matplotlib numpy pandas scikit-learn  
     
-If you see the **Proceed ([y]/n)?** prompt: press 'y' to continue
+If you see the `Proceed ([y]/n)?` prompt: press `y` to continue.
 
-#### If some packages are missing:  
+## 3. Download code from github
+
+### Option 1 (`static`, .zip file):  
+    https://github.com/jjzha/foml/archive/master.zip  
+
+### Option 2 (`dynamic`, if you know how to use `github`):  
+(1) Do only once:  
+
+    git clone https://github.com/jjzha/foml.git  
+
+(2) To get most recent version:  
+
+    git pull
+
+The difference between `static` and `dynamic` is that every time we update some code, you have to download the new code manually. By using `git pull` you are able to *pull* the code from the repository.
+
+## 4. Running an experiment
+
+(1) go to your `foml` directory (by using `cd` command). For example:  
+
+    cd ~/Downloads/foml-master
+   
+It might be that your `foml-master` directory is not in the `Downloads` folder. 
+
+To check where you are currently, type in the terminal/command prompt: `pwd` (for Linux/MacOS users) or `echo %cd%` (for Windows users). 
+
+Then try to navigate to your folder where the `foml` directory is with `cd` (for Linux/MacOS/Windows).
+
+(2) to run an experiment, try:  
+    
+    python run_experiment.py --csv data/hyperp_subset.csv --algorithms nb --features text-cat --nwords 1 --split 70 30
+
+where the following arguments mean:
+- `--csv <string>` is the path to your `csv` file.
+- `--algorithms <string>` is the abbrevation of your algorithm (e.g. Naive Bayes = nb).
+- `--features <string>` is the columns you want to use as features.
+- `--nwords <int>` is the number of words you want the system to look at.
+- `--split <int, int>` is the split you want to use for training and testing, in the example it is 70% training and 30% test, hence `70 30`.
+
+# Tips
+##  If some packages are missing:  
 
     conda install <package_name>  
 
-Please, replace **<package_name>** with your preferred package!  
+Replace `<package_name>` with your preferred package.
 
-#### Update conda regularly
+## Update conda regularly
 
     conda update conda
 
 Having a conda *environment* on your pc is very convenient. You are able to run your scripts in this environment without having python locally.
-
-### 3. Download code from github
-
-#### Option 1 (static, .zip file):  
-    https://github.com/jjzha/foml/archive/master.zip  
-
-#### Option 2 (dynamic, if you know how to use github):  
-(1) do only once:  
-
-    git clone https://github.com/jjzha/foml.git  
-
-(2) to get most recent version:  
-
-    git pull
-
-The difference between static and dynamic is that every time we update some code, you have to download the new code manually. By using **git pull** you are able to *pull* the code from the link.
-
-### 4. Running an experiment
-
-(1) go to your foml map (by using **cd** command). For example:  
-
-    cd ~/Downloads/foml-master
-   
-It might be that your **foml-master** directory is not in the **Downloads** folder. To check where you are currently, type in the terminal/command prompt: **pwd** (for Linux/MacOS users) or **echo %cd%** (for Windows users). Then try to navigate to your folder where the **foml** directory is with **cd** (for Linux/MacOS/Windows).
-
-(2) to run an experiment, try:  
-
-~python run_experiment.py --csv data/trainset-sentiment-extra.csv --algorithms nb --nwords 1~
-    
-per 01-12-2019: script now explicitly asks for the --features flag when --nwords/--nchars is used e.g.
-
-    python run_experiment.py --csv data/trainset-sentiment-extra.csv --algorithms nb --features text-cat --nwords 1
-
-per 03-12-2019: now you have to explicitly state the split:
-    
-    python run_experiment.py --csv data/hyperp_subset.csv --algorithms nb --features text-cat --nwords 1 --split 70 30
 
 # Additional References
 
@@ -109,4 +113,4 @@ More into background of neural nets:
 # Questions?
 
 If you have any questions, please ask during the lab or contact me via e-mail:
-    j.j.zhang@rug.nl
+    mikz@itu.dk or mikejj.zhang@gmail.com
