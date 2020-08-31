@@ -20,7 +20,7 @@ from feature_extractor import (features_to_one_hot, find_ngrams,
 from learn_from_data import (baseline, evaluate_classifier, get_classifiers,
                              make_splits, read_features, show_confusion_matrix)
 
-logging.basicConfig(format='%(levelname)s %(message)s', level=logging.INFO)
+logging.basicConfig(format='%(levelname)s %(message)s', level=logging.DEBUG)
 
 
 if __name__ == '__main__':
@@ -45,11 +45,13 @@ if __name__ == '__main__':
     parser.add_argument('--k', help='number of neighbours for k-NN', type=int, default=1)
     parser.add_argument('--max-train-size', help='maximum number of training instances to look at', type=int, default=None)
 
+    parser.add_argument('--test', help='shows the result on the test set', action="store_true")
+
     args = parser.parse_args()
 
-    logging.info('Reading features...')
+    logging.debug('Reading features...', )
     X, y = read_features_from_csv(args)
-    logging.info('Using one hot encoding...')
+    logging.debug('Using one hot encoding...')
     X, feature_ids = features_to_one_hot(X)
     train_X, train_y, dev_X, dev_y, test_X, test_y = make_splits(X, y, args)
 
@@ -63,8 +65,20 @@ if __name__ == '__main__':
     classifiers = get_classifiers(args)
 
     for clf in classifiers:
-        clf.fit(train_X, train_y)
-        training_result: str = evaluate_classifier(clf, train_X, train_y, args)
-        dev_result: str = evaluate_classifier(clf, dev_X, dev_y, args)
-        logging.info(f'\nResults on the train set:\n{training_result}')
-        logging.info(f'\nResults on the dev set:\n{dev_result}')
+        if args.test:
+            #takes train and dev as training set.
+            train_dev_X = train_X + dev_X
+            train_dev_y = train_y + dev_y
+            clf.fit(train_dev_X , train_dev_y)
+            training_result: str = evaluate_classifier(clf, train_dev_X, train_dev_y, args)
+            logging.info(f'Results on the train set:\n{training_result}\n')
+            test_result: str = evaluate_classifier(clf, test_X, test_y, args)
+            logging.info(f'Results on the test set:\n{test_result}\n')
+
+        else:
+            #takes train set and divides it in 70/30 split again.
+            clf.fit(train_X , train_y)
+            training_result: str = evaluate_classifier(clf, train_X, train_y, args)
+            logging.info(f'Results on the train set:\n{evaluate_classifier(clf, train_X, train_y, args)}\n')
+            dev_result: str = evaluate_classifier(clf, dev_X, dev_y, args)
+            logging.info(f'Results on the dev set:\n{dev_result}\n')
