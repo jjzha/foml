@@ -3,34 +3,20 @@
 
 '''
 Extract features and learn from them, without saving in between.
-
-Running example:
-python run_experiment.py --csv data/trainset-sentiment-extra.csv --algorithms nb --nwords 1
 '''
 
-__author__ = "Johannes Bjerva, and Malvina Nissim (modified by Mike Zhang)"
+__author__ = "Johannes Bjerva, and Malvina Nissim"
 __credits__ = ["Johannes Bjerva", "Malvina Nissim"]
 __license__ = "GPL v3"
 __version__ = "0.2"
-__maintainer__ = "Johannes Bjerva"
-__email__ = "j.bjerva@rug.nl"
+__maintainer__ = "Mike Zhang"
+__email__ = "mikz@itu.dk"
 __status__ = "early alpha"
 
 from feature_extractor import *
 from learn_from_data import *
-
-# def plot_decision_tree():
-#     from sklearn import tree
-#     from sklearn.externals.six import StringIO
-#     feature_names = [feature_ids[idx] for idx in range(len(feature_ids))]
-#     class_names = []
-#     for label in train_y:
-#         if label not in class_names:
-#             class_names.append(label)
-#
-#     with open("decision_tree.dot", 'w', encoding='utf-8') as f:
-#         f = tree.export_graphviz(clf, class_names=sorted(class_names), feature_names=feature_names, out_file=f, filled=True, rounded=True,
-#                          special_characters=True)
+import logging
+logging.basicConfig(format='%(levelname)s %(message)s', level=logging.INFO)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -56,27 +42,24 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    print('reading features...')
+    logging.info('Reading features...')
     X, y = read_features_from_csv(args)
-    print('one hot encoding...')
+    logging.info('Using one hot encoding...')
     X, feature_ids = features_to_one_hot(X)
-
     train_X, train_y, dev_X, dev_y, test_X, test_y = make_splits(X, y, args)
+
     if args.max_train_size:
         train_X = train_X[:args.max_train_size]
         train_y = train_y[:args.max_train_size]
 
-    print('n train samples: {0}'.format(len(train_y)))
-    print('uses a {0}% train and {1}% test split'.format(args.split[0], args.split[1]))
+    logging.info(f'There are {len(train_y)} train samples')
+    logging.info(f'Classifier uses a {args.split[0]}% train and {args.split[1]}% test split.')
     baseline(train_y, dev_y)
     classifiers = get_classifiers(args)
 
     for clf in classifiers:
         clf.fit(train_X, train_y)
-        print('\nResults on the train set:')
-        evaluate_classifier(clf, train_X, train_y, args)
-        print('\nResults on the dev set:')
-        evaluate_classifier(clf, dev_X, dev_y, args)
-
-    #print('\nResults on the test set:')
-    #evaluate_classifier(clf, test_X, test_y, args)
+        training_result = evaluate_classifier(clf, train_X, train_y, args)
+        dev_result = evaluate_classifier(clf, dev_X, dev_y, args)
+        logging.info(f'Results on the train set:\n{training_result}\n')
+        logging.info(f'Results on the dev set:\n{dev_result}')
