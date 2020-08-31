@@ -1,22 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-'''
-Extract features and learn from them, without saving in between.
-'''
+#Extract features and learn from them, without saving in between.
 
 __author__ = "Johannes Bjerva, and Malvina Nissim"
 __credits__ = ["Johannes Bjerva", "Malvina Nissim"]
 __license__ = "GPL v3"
-__version__ = "0.2"
+__version__ = "0.3 (31/08/2020)"
 __maintainer__ = "Mike Zhang"
 __email__ = "mikz@itu.dk"
 __status__ = "early alpha"
 
+import argparse
 import logging
 
-from feature_extractor import *
-from learn_from_data import *
+from feature_extractor import (features_to_one_hot, find_ngrams,
+                               get_column_types, get_line_features, preprocess,
+                               read_features_from_csv)
+from learn_from_data import (baseline, evaluate_classifier, get_classifiers,
+                             make_splits, read_features, show_confusion_matrix)
 
 logging.basicConfig(format='%(levelname)s %(message)s', level=logging.INFO)
 

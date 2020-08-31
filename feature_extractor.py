@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-'''
-This script reads a CSV file and extracts pre-defined features from it.
-The features are saved in a scikit-learn-friendly manner.
-'''
+#This script reads a CSV file and extracts pre-defined features from it.
+#The features are saved in a scikit-learn-friendly manner.
 
 __author__ = "Johannes Bjerva, and Malvina Nissim"
 __credits__ = ["Johannes Bjerva", "Malvina Nissim"]
 __license__ = "GPL v3"
-__version__ = "0.2"
+__version__ = "0.3 (31/08/2020)"
 __maintainer__ = "Mike Zhang"
 __email__ = "mikz@itu.dk"
 __status__ = "early alpha"
