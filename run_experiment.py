@@ -20,6 +20,7 @@ from learn_from_data import *
 
 logging.basicConfig(format='%(levelname)s %(message)s', level=logging.INFO)
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--csv', help='feature csv filename', type=str, required=True)
@@ -51,8 +52,8 @@ if __name__ == '__main__':
     train_X, train_y, dev_X, dev_y, test_X, test_y = make_splits(X, y, args)
 
     if args.max_train_size:
-        train_X = train_X[:args.max_train_size]
-        train_y = train_y[:args.max_train_size]
+        train_X: int = train_X[:args.max_train_size]
+        train_y: int = train_y[:args.max_train_size]
 
     logging.info(f'There are {len(train_y)} train samples')
     logging.info(f'Classifier uses a {args.split[0]}% train and {args.split[1]}% test split.')
@@ -61,7 +62,7 @@ if __name__ == '__main__':
 
     for clf in classifiers:
         clf.fit(train_X, train_y)
-        training_result = evaluate_classifier(clf, train_X, train_y, args)
-        dev_result = evaluate_classifier(clf, dev_X, dev_y, args)
+        training_result: str = evaluate_classifier(clf, train_X, train_y, args)
+        dev_result: str = evaluate_classifier(clf, dev_X, dev_y, args)
         logging.info(f'Results on the train set:\n{training_result}\n')
         logging.info(f'Results on the dev set:\n{dev_result}')
