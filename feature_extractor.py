@@ -6,26 +6,35 @@ This script reads a CSV file and extracts pre-defined features from it.
 The features are saved in a scikit-learn-friendly manner.
 '''
 
-__author__ = "Johannes Bjerva, and Malvina Nissim (modified by Mike Zhang)"
+__author__ = "Johannes Bjerva, and Malvina Nissim"
 __credits__ = ["Johannes Bjerva", "Malvina Nissim"]
 __license__ = "GPL v3"
 __version__ = "0.2"
-__maintainer__ = "Johannes Bjerva"
-__email__ = "j.bjerva@rug.nl"
+__maintainer__ = "Mike Zhang"
+__email__ = "mikz@itu.dk"
 __status__ = "early alpha"
 
-import csv
 import argparse
-from collections import defaultdict, Counter
+import csv
+import logging
+from collections import Counter, defaultdict
+from typing import Dict, List, Tuple
+
 import numpy as np
 
-def read_features_from_csv(args):
-    X = []
-    y = []
-    with open(args.csv, 'r', encoding='utf8') as csvfile:
+logging.basicConfig(format='%(levelname)s %(message)s', level=logging.INFO)
+label_to_id: defaultdict = defaultdict(lambda: len(label_to_id))
+cat_to_id: defaultdict = defaultdict(lambda: len(cat_to_id))
+
+def read_features_from_csv(args: argparse.Namespace) -> Tuple[List, np.ndarray]:
+    X: List[np.ndarray] = []
+    y: List[np.ndarray] = []
+
+    with open(file=args.csv, mode='r', encoding='utf8') as csvfile:
         csv_reader = csv.reader(csvfile, delimiter=args.delimiter)
-        header = next(csv_reader)
-        label_index = header.index('label')
+        header: List[str] = next(csv_reader)
+        label_index: int = header.index('label')
+
         try:
             if args.features is not None:
                 for feature in args.features:
@@ -36,19 +45,21 @@ def read_features_from_csv(args):
             else:
                 text_index = header.index('text-cat')
         except:
-            print('No text-cat found')
+            logging.warning('No text-cat found')
             text_index = -1
 
-        feature_indices = []
+        feature_indices: List[int] = []
+
         for feature in args.features:
             if text_index >= 0:
                 pass
             elif feature in header:
                 feature_indices.append(header.index(feature))
             else:
-                print('Feature {0} not found in header.'.format(feature))
+                logging.warning(f'Feature {feature} not found in header')
 
         types = get_column_types(header)
+
         for line in csv_reader:
             label, features = get_line_features(line, types, label_index, text_index, feature_indices, args)
             #TODO: Get numerical features
@@ -57,43 +68,42 @@ def read_features_from_csv(args):
 
     return X, np.asarray(y, dtype=str)
 
-def get_column_types(header):
+def get_column_types(header: List[str]) -> np.ndarray:
+    types: np.ndarray = np.zeros((len(header), ), dtype=np.object)
 
-    types = np.zeros((len(header), ), dtype=np.object)
     for idx, name in enumerate(header):
         if 'cat' in name:
-            types[idx] = np.array # TODO
+            types[idx] = np.ndarray # TODO
         else:
             types[idx] = np.float32
 
     return types
 
-def get_line_features(line, feature_dtypes, label_index, text_index, feature_indices, args):
-    '''
-    Gets the features in a line.
-    Must have the format (label, feature(s)).
-    '''
+def get_line_features(line: List[str], 
+                      feature_dtypes: np.ndarray, 
+                      label_index: int, 
+                      text_index: int, 
+                      feature_indices: List[int], 
+                      args: argparse.Namespace) -> Tuple[List[int], np.ndarray]:
+    '''Gets the features in a line.Must have the format (label, feature(s)).'''
     #TODO: Add error handling / messages
     # Could go wrong:
     # * Not all features defined
     # * Some features need to be converted to categories
     # * Lemmatisation etc. for text
-    label = line[label_index]
-    #label = label_to_id[line[label_index]]
+    label: List[int] = line[label_index]
+    features: List[str] = []
 
-    features = []
     for idx, column in enumerate(line):
-        if idx == label_index: continue
+        if idx == label_index: 
+            continue
         if idx in feature_indices:
             #TODO: Fix non-categorical
             features.append(cat_to_id[column+'idx'])
-            # if feature_dtypes[idx] == np.float32:
-            #     pass#
-            # else:
-            #     features.append(cat_to_id[column+'idx'])
 
         elif idx == text_index:
             sentence_features = []
+
             if args.nwords:
                 for n in range(args.nwords):
                     ngrams = find_ngrams(column.split(), n+1)
@@ -110,26 +120,28 @@ def get_line_features(line, feature_dtypes, label_index, text_index, feature_ind
 
     return label, features
 
-def find_ngrams(sentence, n):
-  return list(zip(*[sentence[idx:] for idx in range(n)]))
+def find_ngrams(sentence: str, n: int) -> List[Tuple]:
+    return list(zip(*[sentence[idx:] for idx in range(n)]))
 
-def preprocess(word):
-    return word.strip()#stemmer.stem(word.strip())
+def preprocess(word: str) -> str:
+    return word.strip()
 
-def features_to_one_hot(X):
+def features_to_one_hot(X: List[np.ndarray]) -> Tuple[np.ndarray, Dict]:
     '''Convert, e.g., word id features to one hot representation'''
 
-    feature_counts = Counter([i for j in X for i in j])
-    count_cutoff = int(len(X) * 0.001)
-    features_to_use = set([feature for feature, count in feature_counts.items() if count > count_cutoff])
-    new_feature_ids = defaultdict(lambda: len(new_feature_ids))
+    feature_counts: Counter = Counter([i for j in X for i in j])
+    count_cutoff: int = int(len(X) * 0.001)
+    features_to_use: set = set([feature for feature, count in feature_counts.items() if count > count_cutoff])
+    new_feature_ids: defaultdict = defaultdict(lambda: len(new_feature_ids))
+
     for feature in features_to_use:
         new_feature_ids[feature]
 
     n_cats = len(new_feature_ids)
-    print('n features: {0}'.format(n_cats))
+    logging.info(f'Number of features: {n_cats}')
     one_hot_X = np.zeros((len(X), n_cats), dtype=np.float32)
     # TODO: Fix for several cats
+
     for idx, sentence in enumerate(X):
         for cat_id in sentence:
             if cat_id in features_to_use:
@@ -142,12 +154,10 @@ def features_to_one_hot(X):
 
     return one_hot_X, id_to_char
 
-def save_features(X, y, fname):
+def save_features(X: np.ndarray, y: np.ndarray, fname: str) -> None:
     '''Save X and y to a compressed .npz file'''
     np.savez_compressed(fname, X=X, y=y)
 
-label_to_id = defaultdict(lambda: len(label_to_id))
-cat_to_id = defaultdict(lambda: len(cat_to_id))
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--csv', help='feature csv filename', type=str, required=True)
@@ -162,9 +172,9 @@ if __name__ == '__main__':
 
     fname = args.csv[:-4] if not args.fname else args.fname
 
-    print('reading features...')
+    logging.info('reading features...')
     X, y = read_features_from_csv(args)
-    print('one hot encoding...')
+    logging.info('one hot encoding...')
     X, feature_ids  = features_to_one_hot(X)
-    print('saving features...')
+    logging.info(f'saving features to {fname}')
     save_features(X, y, fname)
