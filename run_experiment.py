@@ -13,9 +13,11 @@ __maintainer__ = "Mike Zhang"
 __email__ = "mikz@itu.dk"
 __status__ = "early alpha"
 
+import logging
+
 from feature_extractor import *
 from learn_from_data import *
-import logging
+
 logging.basicConfig(format='%(levelname)s %(message)s', level=logging.INFO)
 
 if __name__ == '__main__':
