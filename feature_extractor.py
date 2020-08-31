@@ -24,6 +24,7 @@ logging.basicConfig(format='%(levelname)s %(message)s', level=logging.DEBUG)
 label_to_id: defaultdict = defaultdict(lambda: len(label_to_id))
 cat_to_id: defaultdict = defaultdict(lambda: len(cat_to_id))
 
+
 def read_features_from_csv(args: argparse.Namespace) -> Tuple[List, np.ndarray]:
     X: List[np.ndarray] = []
     y: List[np.ndarray] = []
