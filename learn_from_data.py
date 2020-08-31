@@ -18,8 +18,8 @@ import random
 from collections import Counter
 from typing import List, Tuple, Union
 
-import pandas as pd
 import numpy as np
+import pandas as pd
 from sklearn.metrics import (accuracy_score, classification_report,
                              confusion_matrix)
 from sklearn.naive_bayes import MultinomialNB
@@ -27,8 +27,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 
+# random.seed(1337)
 logging.basicConfig(format='%(levelname)s %(message)s', level=logging.DEBUG)
-
 
 
 def read_features(fname: str) -> Tuple[np.ndarray, np.ndarray]:
@@ -114,7 +114,6 @@ def show_confusion_matrix(test_y, pred_y, args):
 
     print(classification_report(test_y, pred_y, labels=sorted(list(set(test_y)))))
 
-# random.seed(1337)
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--npz', help='feature npz filename', type=str)
