@@ -64,5 +64,5 @@ if __name__ == '__main__':
         clf.fit(train_X, train_y)
         training_result: str = evaluate_classifier(clf, train_X, train_y, args)
         dev_result: str = evaluate_classifier(clf, dev_X, dev_y, args)
-        logging.info(f'Results on the train set:\n{training_result}\n')
-        logging.info(f'Results on the dev set:\n{dev_result}')
+        logging.info(f'\nResults on the train set:\n{training_result}')
+        logging.info(f'\nResults on the dev set:\n{dev_result}')
