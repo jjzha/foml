@@ -10,7 +10,7 @@ __license__ = "GPL v3"
 __version__ = "0.3 (31/08/2020)"
 __maintainer__ = "Mike Zhang"
 __email__ = "mikz@itu.dk"
-__status__ = "early alpha"
+__status__ = "Testing"
 
 import argparse
 import csv
