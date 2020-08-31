@@ -2,8 +2,8 @@
 
 Code for ML students.
 
-__author__ = Malvina Nissim & Mike Zhang  
-__version__ = 1.0  
+__author__ = Johannes Bjerva and Malvina Nissim  
+__version__ = 0.3  
 __license__ = GPL v3  
 __maintainer__ = Mike Zhang  
 __status__ = Testing

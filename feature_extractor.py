@@ -4,7 +4,7 @@
 #This script reads a CSV file and extracts pre-defined features from it.
 #The features are saved in a scikit-learn-friendly manner.
 
-__author__ = "Johannes Bjerva, and Malvina Nissim"
+__author__ = "Johannes Bjerva and Malvina Nissim"
 __credits__ = ["Johannes Bjerva", "Malvina Nissim"]
 __license__ = "GPL v3"
 __version__ = "0.3 (31/08/2020)"

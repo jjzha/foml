@@ -3,7 +3,7 @@
 
 #Extract features and learn from them, without saving in between.
 
-__author__ = "Johannes Bjerva, and Malvina Nissim"
+__author__ = "Johannes Bjerva and Malvina Nissim"
 __credits__ = ["Johannes Bjerva", "Malvina Nissim"]
 __license__ = "GPL v3"
 __version__ = "0.3 (31/08/2020)"
