@@ -20,7 +20,7 @@ from typing import Dict, List, Tuple
 
 import numpy as np
 
-logging.basicConfig(format='%(levelname)s %(message)s', level=logging.INFO)
+logging.basicConfig(format='%(levelname)s %(message)s', level=logging.DEBUG)
 label_to_id: defaultdict = defaultdict(lambda: len(label_to_id))
 cat_to_id: defaultdict = defaultdict(lambda: len(cat_to_id))
 
