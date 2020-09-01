@@ -70,6 +70,7 @@ where the following arguments mean:
 - `--features <string>` is the columns you want to use as features.
 - `--nwords <int>` is the number of words you want the system to look at.
 - `--split <int, int>` is the split you want to use for training and testing, in the example it is 70% training and 30% test, hence `70 30`.
+By default, it will use the 70% training set for training and development. If the `--test` argument is given, it will show the result on the test set.
 
 # Tips
 ##  If some packages are missing:  
