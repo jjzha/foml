@@ -21,7 +21,7 @@ Please note: pick the `Python 3.8` version, also check whether your system is `3
 
 After installing miniconda, we are going to install some packages:  
 
-(1)  Go to your terminal (`Anaconda prompt (miniconda3)`) for Windows. Windows users go to `(3)`).  
+(1) Go to your terminal (`Anaconda prompt (miniconda3)` for Windows. Windows users go to `(3)`).  
 (2) Type (or copy-paste):
 
     conda activate  
