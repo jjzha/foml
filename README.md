@@ -114,4 +114,4 @@ More into background of neural nets:
 # Questions?
 
 If you have any questions, please ask during the lab or contact me via e-mail:
-    mikz@itu.dk or mikejj.zhang@gmail.com
+    mikz@itu.dk
