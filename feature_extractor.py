@@ -33,14 +33,13 @@ def read_features_from_csv(args: argparse.Namespace) -> Tuple[List, np.ndarray]:
         csv_reader = csv.reader(csvfile, delimiter=args.delimiter)
         header: List[str] = next(csv_reader)
         label_index: int = header.index('label')
+        text_index: int = -1
 
         try:
             if args.features is not None:
                 for feature in args.features:
                     if feature in header and 'text' in feature:
                         text_index = header.index(feature)
-                    else:
-                        text_index = -1
             else:
                 text_index = header.index('text-cat')
         except:
@@ -50,8 +49,8 @@ def read_features_from_csv(args: argparse.Namespace) -> Tuple[List, np.ndarray]:
         feature_indices: List[int] = []
 
         for feature in args.features:
-            if text_index >= 0:
-                pass
+            if feature == "text-cat" and text_index >= 0:
+                continue
             elif feature in header:
                 feature_indices.append(header.index(feature))
             else:
