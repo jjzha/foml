@@ -29,7 +29,7 @@ def read_features_from_csv(args: argparse.Namespace) -> Tuple[List, np.ndarray]:
     X: List[np.ndarray] = []
     y: List[np.ndarray] = []
 
-    with open(file=args.csv, mode='r', encoding='utf8') as csvfile:
+    with open(file=args.csv, mode='r', encoding='utf-8', errors='ignore') as csvfile:
         csv_reader = csv.reader(csvfile, delimiter=args.delimiter)
         header: List[str] = next(csv_reader)
         label_index: int = header.index('label')
