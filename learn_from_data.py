@@ -39,7 +39,7 @@ def read_features(fname: str) -> Tuple[np.ndarray, np.ndarray]:
 
 def make_splits(X: np.ndarray, 
                 y: np.ndarray, 
-                args: argparse.Namespace) -> Tuple[List, List, List, List]:
+                args: argparse.Namespace) -> Tuple[List, List, List, List, List, List]:
     X: list = list(X)
     y: list = list(y)
 
@@ -53,14 +53,14 @@ def make_splits(X: np.ndarray,
     train_split = int(len(y) * train)
     dev_split = int((len(y) * train) * test)
 
-    train_X = X[:train_split]
-    train_y = y[:train_split]
-    dev_X = train_X[:dev_split]
-    dev_y = train_y[:dev_split]
+    train_and_dev_X = X[:train_split]
+    train_and_dev_y = y[:train_split]
+    train_X, dev_X = train_and_dev_X[:dev_split], train_and_dev_X[dev_split:]
+    train_y, dev_y = train_and_dev_y[:dev_split], train_and_dev_y[dev_split:]
     test_X  = X[train_split:]
     test_y  = y[train_split:]
 
-    return train_X, train_y, dev_X, dev_y, test_X, test_y
+    return train_and_dev_X, train_and_dev_y, train_X, train_y, dev_X, dev_y, test_X, test_y
 
 def baseline(train_y: List[Union[int, str]], test_y: List[Union[int, str]]) -> None:
     most_common = Counter(train_y).most_common()[0][0]

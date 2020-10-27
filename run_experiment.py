@@ -53,7 +53,7 @@ if __name__ == '__main__':
     X, y = read_features_from_csv(args)
     logging.debug('Using one hot encoding...')
     X, feature_ids = features_to_one_hot(X)
-    train_X, train_y, dev_X, dev_y, test_X, test_y = make_splits(X, y, args)
+    train_and_dev_X, train_and_dev_y, train_X, train_y, dev_X, dev_y, test_X, test_y = make_splits(X, y, args)
 
     if args.max_train_size:
         train_X: int = train_X[:args.max_train_size]
@@ -67,17 +67,15 @@ if __name__ == '__main__':
     for clf in classifiers:
         if args.test:
             #takes train and dev as training set.
-            train_dev_X = train_X + dev_X
-            train_dev_y = train_y + dev_y
-            clf.fit(train_dev_X , train_dev_y)
-            training_result: str = evaluate_classifier(clf, train_dev_X, train_dev_y, args)
+            clf.fit(train_and_dev_X , train_and_dev_y)
+            training_result: str = evaluate_classifier(clf, train_and_dev_X, train_and_dev_y, args)
             logging.info(f'Results on the train set:\n{training_result}\n')
             test_result: str = evaluate_classifier(clf, test_X, test_y, args)
             logging.info(f'Results on the test set:\n{test_result}\n')
 
         else:
             #takes train set and divides it in 70/30 split again.
-            clf.fit(train_X , train_y)
+            clf.fit(train_X, train_y)
             training_result: str = evaluate_classifier(clf, train_X, train_y, args)
             logging.info(f'Results on the train set:\n{evaluate_classifier(clf, train_X, train_y, args)}\n')
             dev_result: str = evaluate_classifier(clf, dev_X, dev_y, args)
